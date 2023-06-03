@@ -16,13 +16,14 @@ async function fetchUserRepos(username) {
 
 export function Home() {
   const [user, setUser] = useState(null)
+  const [repos, setRepos] = useState([])
   
   useEffect(() => {
     fetchData('FabioMTeixeira').then(res => setUser(res))
   },[])
 
   useEffect(() => {
-    fetchUserRepos('FabioMTeixeira').then(res => setUser(res))
+    fetchUserRepos('FabioMTeixeira').then(res => setRepos(res))
   },[])
 
   if(!user) return 
@@ -31,6 +32,8 @@ export function Home() {
     <Container>
       <Brand>
         <h1>GitUsers</h1>
+        <input type="text" placeholder='Digite o Username'/>
+        <button>Buscar</button>
       </Brand>
         <img src= {user.avatar_url} alt="Foto"/>
         Nome: {user.name}
@@ -41,12 +44,20 @@ export function Home() {
             <tr>
               <th>Nome</th>
               <th>Link do repositório</th>
-              <th>Visibilidade</th>
               <th>Estrelas</th>
             </tr>
           </thead>
           <tbody>
 
+            {repos.map(repo => {
+              return (
+                <tr key={repo.id}>
+                  <td>{repo.name}</td>
+                  <td><a href={repo.html_url} target='_blank' rel="noreferrer">{repo.html_url}</a></td>
+                  <td>{repo.stargazers_count}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
     </Container>
