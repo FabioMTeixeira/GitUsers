@@ -11,5 +11,9 @@ export const Container = styled.div`
 `;
 
 export const Brand = styled.header`
-
+    >button {
+        background-color: black;
+    }
 `
+
+/* mudar cor da letra do button */
