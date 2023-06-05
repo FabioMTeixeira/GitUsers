@@ -7,12 +7,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
 
     font-family: 'Inter', sans-serif;
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
   }
 
   body {
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-    padding: 2rem;
+    padding: 4px;
   }
 
   p {
