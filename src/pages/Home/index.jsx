@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Brand } from './styles';
+import { Container, Brand, Search, Card, Info } from './styles';
 import axios from 'axios';
 
 async function fetchUserRepos(username) {
@@ -10,7 +10,7 @@ async function fetchUserRepos(username) {
 export function Home() {
   const [user, setUser] = useState(null)
   const [repos, setRepos] = useState([])
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState('fabiomteixeira')
   
   async function handleButtonClick() {
   await fetchUserRepos(username).then(res => {
@@ -23,15 +23,19 @@ export function Home() {
     <Container>
       <Brand>
         <h1>GitUsers</h1>
+        <Search>
         <input type="text" placeholder='Digite o Username' onChange={(input) => {
           setUsername(input.target.value)
         }}/>
         <button onClick={handleButtonClick}>Buscar</button>
+        </Search>
       </Brand>
       {user ? (
-        <div>
-          <img src= {user.avatar_url} alt="Foto"/>
-          <a href= {user.html_url} target='_blank' rel="noreferrer">Username: {user.login}</a>
+        <Card>
+          <Info>
+            <img src= {user.avatar_url} alt="Foto"/>
+            <a href= {user.html_url} target='_blank' rel="noreferrer">Username: {user.login}</a>
+          </Info>
           <table>
             <thead>
               <tr>
@@ -53,7 +57,7 @@ export function Home() {
               })}
             </tbody>
           </table>
-        </div>
+        </Card>
         ) : null}
     </Container>
   )
