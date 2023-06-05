@@ -10,7 +10,7 @@ async function fetchUserRepos(username) {
 export function Home() {
   const [user, setUser] = useState(null)
   const [repos, setRepos] = useState([])
-  const [username, setUsername] = useState('fabiomteixeira')
+  const [username, setUsername] = useState('')
   
   async function handleButtonClick() {
   await fetchUserRepos(username).then(res => {
